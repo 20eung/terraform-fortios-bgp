@@ -38,7 +38,7 @@ resource "fortios_system_sdwan" "this" {
         }
     }
     
-    depends_on		            = [fortios_system_interface.azure-us-1, fortios_system_interface.azure-us-2]
+    depends_on                  = [fortios_system_interface.azure-us-1, fortios_system_interface.azure-us-2]
 }
 
 
@@ -49,8 +49,8 @@ resource "fortios_firewall_policy" "us_site_vlan-to-sdwan" {
     dstintf   { name	        = "virtual-wan-link" }
     srcaddr   { name	        = "all" }
     dstaddr   { name	        = "all" }
-    action		                = "accept"
-    schedule		            = "always"
+    action                      = "accept"
+    schedule                    = "always"
     service   { name	        = "ALL" }
     nat                         = "disable"
     tcp_mss_sender              = "1350"
@@ -64,8 +64,8 @@ resource "fortios_firewall_policy" "sdwan-to-us_site_vlan" {
     dstintf   { name	        = "us_site_vlan" }
     srcaddr   { name	        = "all" }
     dstaddr   { name	        = "all" }
-    action		                = "accept"
-    schedule		            = "always"
+    action                      = "accept"
+    schedule                    = "always"
     service   { name	        = "ALL" }
     nat                         = "disable"
     tcp_mss_sender              = "1350"
