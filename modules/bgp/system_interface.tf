@@ -1,7 +1,7 @@
 # System Interface 설정
 # 터널 IP 설정
 # MSS 사이즈 설정
-```
+
 resource "fortios_system_interface" "us_site_vlan" {
     vdom                    = "root"
     ip                      = "10.92.129.1 255.255.255.0"
@@ -39,4 +39,3 @@ resource "fortios_system_interface" "azure-us-2" {
 
   depends_on		        = [fortios_vpnipsec_phase2interface.azure-us-2]
 }
-```
