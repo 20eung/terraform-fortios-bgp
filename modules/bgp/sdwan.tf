@@ -21,7 +21,7 @@ resource "fortios_system_sdwan" "this" {
     
     # Configure a performance SLA
     health_check {
-        name                    = "globalwan_vm"
+        name                    = "sla_server"
         server                  = var.sla_server
         sla_fail_log_period     = "30"
         sla_pass_log_period     = "60"
