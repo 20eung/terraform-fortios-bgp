@@ -1,8 +1,8 @@
 # Enable SD-WAN
 resource "fortios_system_sdwan" "this" {
-    status              = "enable"
+    status                      = "enable"
     # Select the implicit SD-WAN algorithm
-    load_balance_mode   = "source-dest-ip-based"
+    load_balance_mode           = "source-dest-ip-based"
 
 
 # Add interfaces as members
