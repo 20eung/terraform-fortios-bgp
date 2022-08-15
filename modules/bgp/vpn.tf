@@ -3,7 +3,7 @@ terraform {
     required_providers {
         fortios	= {
 	        source	= "fortinetdev/fortios"
-	    }
+	}
     }
 }
 
@@ -18,7 +18,7 @@ resource "fortios_vpnipsec_phase1interface" "azure-us-1" {
   proposal		= "aes128-sha1 3des-sha1 aes256-sha256"
   dhgrp			= "2"
   remote_gw		= "${lookup(var.azure_vpns[0], "remote_gw")}"
-  psksecret		= "sknetvpn"
+  psksecret		= "VPNSecret!"
   dpd_retryinterval	= "10"
   nattraversal		= "disable"
 }
@@ -47,7 +47,7 @@ resource "fortios_vpnipsec_phase1interface" "azure-us-2" {
   proposal		= "aes128-sha1 3des-sha1 aes256-sha256"
   dhgrp			= "2"
   remote_gw		= "${lookup(var.azure_vpns[1], "remote_gw")}"
-  psksecret		= "sknetvpn"
+  psksecret		= "VPNSecret!"
   dpd_retryinterval	= "10"
   nattraversal		= "disable"
 }
