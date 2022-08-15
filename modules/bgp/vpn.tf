@@ -1,4 +1,3 @@
-```
 terraform {
     required_providers {
         fortios	= {
@@ -64,4 +63,3 @@ resource "fortios_vpnipsec_phase2interface" "azure-us-2" {
 
   depends_on		= [fortios_vpnipsec_phase1interface.azure-us-2]
 }
-```
