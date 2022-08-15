@@ -89,6 +89,13 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
   * VPN TUnnel_2 IP
   * US Site의 사용자 네트워크
 
+---
+> ### modules/sdwan.tf 설명
+
+* SD-WAN Member 선언
+* Performance SLA 측정을 위한 Health-Check 설정
+* SD-WAN 인터페이스 활성화를 위한 Firewall 정책 설정
+
 
 ---
 #terraform #fortinet #fortigate #fortios #ipsec #vpn #bgp #sdwan #sd-wan
