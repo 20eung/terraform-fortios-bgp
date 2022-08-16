@@ -96,13 +96,21 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 * BGP로 라우팅 광고하기 위한 Access-list 설정: tunnel1, tunnel2
 * BGP 기본 설정
   * as : US Site에서 사용하는 BGP AS 번호
-  * router-id : US Site를 대표하는 ID (보통 공인 IP 사용)
+  * router-id : US Site를 대표하는 ID (보통 Loopback IP 사용)
   * ebgp_multipath : Azure 네트워크 정보가 2개의 VPN 터널을 통해 통신 가능한 설정
 
 * BGP Neighbor 설정
   * ip: Azure VPN Instance 0, 1 공인 IP
   * remote_as: Azure VPN에서 사용하는 ASN
   * distribute_list_out : BGP로 광고하기 위해 설정한 Access-list 지정
+  * ebgp-enforce-multihop : Azure로부터 받은 BGP 라우팅을 라우팅 테이블에 등록
+
+* EBGP Multihop에 대한 이해
+  * 멀티홉은 EBGP 전용이고 IBGP용은 아닙니다.
+  * 일반적으로 EBGP는 로드 밸런싱이 작동하지 않아 패킷을 보낼 링크 중 하나를 선택합니다.
+  * BGP 피어 유닛 간에 물리적 링크가 여러 개 있는 경우 각 링크에 대해 별도의 EBGP 피어링을 생성하는 대신 원격 유닛의 루프백 주소로 하나의 EBGP 피어링 세션만 구성할 수 있습니다.   
+  * 원격 장치 루프백은 장치 간의 여러 물리적 링크 간의 트래픽 로드 균형을 조정하는 데 도움이 되는 동일한 비용 경로가 있는 IGP 또는 정적 경로를 사용하여 로컬 장치에서 도달할 수 있어야 합니다.
+  * EBGP 멀티홉의 주요 이점은 물리적 링크 중 하나가 실패하더라도 대체 링크에 도달 가능성이 여전히 존재한다는 것입니다.
 
 * BGP Network 선언
   * VPN Tunnel_1 IP
