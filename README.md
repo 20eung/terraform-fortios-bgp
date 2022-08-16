@@ -66,6 +66,8 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 
 * US Site의 사용자 네트워크 생성: us_site_vlan (10.92.129.1/24)
 * VPN 인터페이스에 tunnel ip 설정
+* tcp_mss 권장 설정 값: 1350
+* firewall policy 대신 interface에 tcp_mss 설정을 해도 동일한 효과
 
 ---
 > ### FortiGate 장비에서 SD-WAN 설정 방법
