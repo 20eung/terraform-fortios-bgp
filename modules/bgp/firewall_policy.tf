@@ -10,8 +10,8 @@ resource "fortios_firewall_policy" "us_site_vlan-to-azure" {
   schedule          = "always"
   service   { name  = "ALL" }
   nat               = "disable"
-  tcp_mss_sender    = "1350"
-  tcp_mss_receiver  = "1350"
+# tcp_mss_sender    = "1350"
+# tcp_mss_receiver  = "1350"
   logtraffic        = "all"
 
   depends_on        = [fortios_system_interface.azure-us-1, fortios_system_interface.azure-us-2, fortios_system_interface.us_site_vlan]
@@ -29,8 +29,8 @@ resource "fortios_firewall_policy" "azure-to-us_site_vlan" {
   schedule          = "always"
   service   { name  = "ALL" }
   nat               = "disable"
-  tcp_mss_sender    = "1350"
-  tcp_mss_receiver  = "1350"
+# tcp_mss_sender    = "1350"
+# tcp_mss_receiver  = "1350"
   logtraffic        = "all"
 
   depends_on        = [fortios_system_interface.azure-us-1, fortios_system_interface.azure-us-2, fortios_system_interface.us_site_vlan]
