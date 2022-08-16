@@ -96,6 +96,9 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 * Performance SLA 측정을 위한 Health-Check 설정
 * SD-WAN 인터페이스 활성화를 위한 Firewall 정책 설정
 
+---
+> ### Azure Virtual WAN > Virtual HUB > S2S VPN > Site > Link 설정
+![Azure vHub VPN Site Link](./img/az-vhub-vpn-site-link.png "Azure vHub VPN Site Link")
 
 ---
 #terraform #fortinet #fortigate #fortios #ipsec #vpn #bgp #sdwan #sd-wan
