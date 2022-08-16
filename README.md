@@ -24,7 +24,7 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 * FortiOS를 사용하려면 module 에서도 provider 설정이 필요합니다.
 * Azure VPN 연동 권장 설정
 
-|설정|Phase 1 권장 값|
+|설정<br><img width=150/>|Phase 1 권장 값<br><img width=400/>|
 |----|--------------|
 |IKE Version|2|
 |dpd|on-idle|
@@ -34,20 +34,20 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 |dpd_retryinterval|10|
 |nattraversal|disable|
 
-|설정|Phase 2 권장 값|
+|설정<br><img width=150/>|Phase 2 권장 값<br><img width=400/>|
 |----|--------------|
 |proposal|aes128-sha1 3des-sha1 aes256-sha256|
 |pfs|Disable|
 |keylife|27700|
 
-|설정|Firewall Policy 권장 값|
+|설정<br><img width=150/>|Firewall Policy 권장 값<br><img width=400/>|
 |----|----------------------|
 |tcp-mss-sender|1350|
 |tcp-mss-receiver|1350|
 
 또는
 
-|설정|VPN Interface 권장 값|
+|설정<br><img width=150/>|VPN Interface 권장 값<br><img width=400/>|
 |----|--------------------|
 |tcp-mss|1350|
 
