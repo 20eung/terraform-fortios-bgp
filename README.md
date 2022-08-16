@@ -16,7 +16,7 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 
 * Azure VPN 정보
 * US Site 정보
-* SDWAN에서 SLA 측정을 하기 위한 Azure 서버 IP 정보
+* SD-WAN에서 SLA 측정을 하기 위한 Azure 서버 IP 정보
 
 ---
 > ### modules/vpn.tf 설명
@@ -88,7 +88,7 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 
 * VPN 1 인터페이스에서는 자신의 Tunnel IP주소와 내부 네트워크 정보를 BGP 라우팅 광고
 * VPN 2 인터페이스에서는 자신의 Tunnel IP주소와 내부 네트워크 정보를 BGP 라우팅 광고
-* 이렇게 설정하면 Azure에서 Tunnel IP 주소에 대할 라우팅이 instance 0과 instance 1로 각각 설정되어 sla 측정이 정상적으로 수행됨
+* 이렇게 설정하면 Azure에서 Tunnel IP 주소에 대한 라우팅이 instance 0과 instance 1로 각각 설정되어 sla 측정이 정상적으로 수행됨
 
 ---
 > ### modules/route.tf 설명
