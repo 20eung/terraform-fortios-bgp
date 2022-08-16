@@ -107,4 +107,12 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 ![Azure vHub VPN BGP Dashboard](./img/az-vhub-vpn-site-bgp-dashboard.png "Azure vHub VPN BGP Dashboard")
 
 ---
+> ### FortiGate > get router info bgp summary
+![get router info bgp summary](./img/get-router-info-bgp-summary.png "get router info bgp summary")
+
+---
+> ### FortiGate > get router info routing-table bgp
+![get router info routing-table bgp](./img/get-router-info-routing-table-bgp.png "get router info routing-table bgp")
+
+---
 #terraform #fortinet #fortigate #fortios #ipsec #vpn #bgp #sdwan #sd-wan
