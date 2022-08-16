@@ -25,7 +25,7 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 * Azure VPN 연동 권장 설정
 
 |설정|Phase 1 권장 값|
-|-----------|---------|
+|----|--------------|
 |IKE Version|2|
 |dpd|on-idle|
 |keylife|28800|
@@ -35,10 +35,22 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 |nattraversal|disable|
 
 |설정|Phase 2 권장 값|
-|-----------|---------|
+|----|--------------|
 |proposal|aes128-sha1 3des-sha1 aes256-sha256|
 |pfs|Disable|
 |keylife|27700|
+
+|설정|Firewall Policy 권장 값|
+|----|----------------------|
+|tcp-mss-sender|1350|
+|tcp-mss-receiver|1350|
+
+또는
+
+|설정|VPN Interface 권장 값|
+|----|--------------------|
+|tcp-mss|1350|
+
 
 [ FortiOF Cookbook ](https://docs.fortinet.com/document/fortigate/6.2.11/cookbook/255100/ipsec-vpn-to-azure) 바로가기
 
