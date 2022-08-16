@@ -98,6 +98,8 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 
 ---
 > ### Azure Virtual WAN > Virtual HUB > S2S VPN > Site > Link 설정
+![Azure vHub VPN Site](./img/az-vhub-vpn-site.png "Azure vHub VPN Site")
+
 ![Azure vHub VPN Site Link](./img/az-vhub-vpn-site-link.png "Azure vHub VPN Site Link")
 
 ---
