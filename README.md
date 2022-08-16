@@ -107,6 +107,11 @@ Terraform으로 FortiGete 장비에서 Azure VPN Gateway와 IPsec VPN 연동, BG
 ![Azure vHub VPN BGP Dashboard](./img/az-vhub-vpn-site-bgp-dashboard.png "Azure vHub VPN BGP Dashboard")
 
 ---
+> ### Azure Virtual WAN > Virtual HUB > Effective Route > Default
+![Azure vHub Effective Route](./img/az-vhub-effective-route-default.png "Azure vHub Effective Route")
+
+
+---
 > ### FortiGate > get router info bgp summary
 ![get router info bgp summary](./img/get-router-info-bgp-summary.png "get router info bgp summary")
 
