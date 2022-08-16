@@ -64,8 +64,8 @@ config firewall policy
         set schedule "always"
         set service "ALL"
         set logtraffic all
-        set tcp-mss-sender 1350
-        set tcp-mss-receiver 1350
+#       set tcp-mss-sender 1350
+#       set tcp-mss-receiver 1350
     next
     edit 0
         set name "azure-to-us_site_vlan"
@@ -77,8 +77,8 @@ config firewall policy
         set schedule "always"
         set service "ALL"
         set logtraffic all
-        set tcp-mss-sender 1350
-        set tcp-mss-receiver 1350
+#       set tcp-mss-sender 1350
+#       set tcp-mss-receiver 1350
     next
 end 
 ```
