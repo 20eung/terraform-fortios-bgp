@@ -1,5 +1,5 @@
 ## Terraform 코드를 FortiGate config로 표현하면 아래와 같습니다.
-### FortiGate 60E Firmware v6.4.7 build1911(GA)에서 확인하였습니다.
+#### FortiGate 60E Firmware v6.4.7 build1911(GA)에서 확인하였습니다.
 
 > vpn.tf
 ```
