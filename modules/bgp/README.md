@@ -4,7 +4,7 @@
 > vpn.tf
 ```
 config vpn ipsec phase1-interface
-    edit "azure-us-1"
+    edit "azure-1"
         set interface "wan1"
         set ike-version 2
         set keylife 28800
@@ -18,7 +18,7 @@ config vpn ipsec phase1-interface
         set psksecret VPNSecret!
         set dpd-retryinterval 10
     next
-    edit "azure-us-2"
+    edit "azure-2"
         set interface "wan1"
         set ike-version 2
         set keylife 28800
@@ -35,15 +35,15 @@ config vpn ipsec phase1-interface
 end
 
 config vpn ipsec phase2-interface
-    edit "azure-us-1"
-        set phase1name "azure-us-1"
+    edit "azure-1"
+        set phase1name "azure-1"
         set proposal aes256-sha256
         set pfs disable
         set auto-negotiate enable
         set keylifeseconds 27000
     next
-    edit "azure-us-2"
-        set phase1name "azure-us-2"
+    edit "azure-2"
+        set phase1name "azure-2"
         set proposal aes256-sha256
         set pfs disable
         set auto-negotiate enable
@@ -56,9 +56,9 @@ end
 ```
 config firewall policy
     edit 0
-        set name "us_site_vlan-to-azure"
-        set srcintf "us_site_vlan"
-        set dstintf "azure-us-1" "azure-us-2"
+        set name "internal-to-azure"
+        set srcintf "internal"
+        set dstintf "azure-1" "azure-2"
         set srcaddr "all"
         set dstaddr "all"
         set action accept
@@ -67,9 +67,9 @@ config firewall policy
         set logtraffic all
     next
     edit 0
-        set name "azure-to-us_site_vlan"
-        set srcintf "azure-us-1" "azure-us-2"
-        set dstintf "us_site_vlan"
+        set name "azure-to-internal"
+        set srcintf "azure-1" "azure-2"
+        set dstintf "internal"
         set srcaddr "all"
         set dstaddr "all"
         set action accept
@@ -83,7 +83,7 @@ end
 > system_interface.tf
 ```
 config system interface
-    edit "azure-us-1"
+    edit "azure-1"
         set vdom "root"
         set ip 10.242.189.12 255.255.255.255
         set allowaccess ping
@@ -92,7 +92,7 @@ config system interface
         set remote-ip 10.242.187.12 255.255.255.255
         set interface "wan1"
     next
-    edit "azure-us-2"
+    edit "azure-2"
         set vdom "root"
         set ip 10.242.189.13 255.255.255.255
         set allowaccess ping
@@ -172,9 +172,9 @@ end
 ```
 config firewall policy
     edit 0
-        set name "us_site_vlan-to-azure"
-        set srcintf "us_site_vlan"
-        set dstintf "azure-us-1" "azure-us-2"
+        set name "internal-to-azure"
+        set srcintf "internal"
+        set dstintf "azure-1" "azure-2"
         set srcaddr "all"
         set dstaddr "all"
         set action accept
@@ -183,9 +183,9 @@ config firewall policy
         set logtraffic all
     next
     edit 0
-        set name "azure-to-us_site_vlan"
-        set srcintf "azure-us-1" "azure-us-2"
-        set dstintf "us_site_vlan"
+        set name "azure-to-internal"
+        set srcintf "azure-1" "azure-2"
+        set dstintf "internal"
         set srcaddr "all"
         set dstaddr "all"
         set action accept
@@ -210,11 +210,11 @@ end
 config system sdwan
     config members
         edit 1
-            set interface "azure-us-1"
+            set interface "azure-1"
             set gateway 10.242.189.12
         next
         edit 2
-            set interface "azure-us-2"
+            set interface "azure-2"
             set gateway 10.242.199.13
         next
     end
