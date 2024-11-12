@@ -1,4 +1,5 @@
 ## Terraform 코드를 FortiGate config로 표현하면 아래와 같습니다.
+### FortiGate 60E Firmware v6.4.7 build1911(GA)에서 확인하였습니다.
 
 > vpn.tf
 ```
@@ -9,7 +10,7 @@ config vpn ipsec phase1-interface
         set keylife 28800
         set peertype any
         set net-device disable
-        set proposal aes128-sha1 3des-sha1 aes256-sha256
+        set proposal aes256-sha256
         set dpd on-idle
         set dhgrp 2
         set nattraversal disable
@@ -23,7 +24,7 @@ config vpn ipsec phase1-interface
         set keylife 28800
         set peertype any
         set net-device disable
-        set proposal aes128-sha1 3des-sha1 aes256-sha256
+        set proposal aes256-sha256
         set dpd on-idle
         set dhgrp 2
         set nattraversal disable
@@ -36,14 +37,14 @@ end
 config vpn ipsec phase2-interface
     edit "azure-us-1"
         set phase1name "azure-us-1"
-        set proposal aes128-sha1 3des-sha1 aes256-sha256
+        set proposal aes256-sha256
         set pfs disable
         set auto-negotiate enable
         set keylifeseconds 27000
     next
     edit "azure-us-2"
         set phase1name "azure-us-2"
-        set proposal aes128-sha1 3des-sha1 aes256-sha256
+        set proposal aes256-sha256
         set pfs disable
         set auto-negotiate enable
         set keylifeseconds 27000
@@ -64,8 +65,6 @@ config firewall policy
         set schedule "always"
         set service "ALL"
         set logtraffic all
-#       set tcp-mss-sender 1350
-#       set tcp-mss-receiver 1350
     next
     edit 0
         set name "azure-to-us_site_vlan"
@@ -77,8 +76,6 @@ config firewall policy
         set schedule "always"
         set service "ALL"
         set logtraffic all
-#       set tcp-mss-sender 1350
-#       set tcp-mss-receiver 1350
     next
 end 
 ```
@@ -166,14 +163,51 @@ end
 ```
 
 > sdwan.tf
+
+> firewall_policy.tf
+
+## SDWAN 설정을 하기 위해서는 Firewall Policy를 먼저 삭제해야 함
+## 아래 2개의 정책 삭제 후 진행해야 합니다.
+
+```
+config firewall policy
+    edit 0
+        set name "us_site_vlan-to-azure"
+        set srcintf "us_site_vlan"
+        set dstintf "azure-us-1" "azure-us-2"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+    next
+    edit 0
+        set name "azure-to-us_site_vlan"
+        set srcintf "azure-us-1" "azure-us-2"
+        set dstintf "us_site_vlan"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+    next
+end 
+```
+
+## 위 2개 정책 삭제 후 진행합니다.
+
 ```
 config system sdwan
     set status enable
-    set load-balance-mode source-dest-ip-based
     config zone
         edit "virtual-wan-link"
         next
     end
+end
+
+config system sdwan
     config members
         edit 1
             set interface "azure-us-1"
@@ -184,20 +218,41 @@ config system sdwan
             set gateway 10.242.199.13
         next
     end
+end
+
+config system sdwan
     config health-check
         edit "sla_server"
             set server "10.242.190.68"
-            set sla-fail-log-period 30
-            set sla-pass-log-period 60
+            set interval 1000
             set members 1 2
             config sla
                 edit 1
-                    set latency-threshold 200
+                    set latency-threshold 150
+                    set jitter-threshold 30
+                    set packetloss-threshold 2
                 next
             end
         next
     end
 end
+
+config system sdwan
+    config service
+        edit 1
+            set name "sla_check"
+            set mode sla
+            set dst "sla_server"
+            config sla
+                edit "sla_check"
+                    set id 1
+                next
+            end
+            set priority-members 1 2
+        next
+    end
+end
+
 ```
 
 ---
